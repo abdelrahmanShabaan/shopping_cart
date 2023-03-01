@@ -1,6 +1,5 @@
 <?php 
 include('header.php');
-session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +25,7 @@ session_start();
     <p class="card-text">$salary : 25-Cent</p>
     <button type="submit" name="Add_to_Cart" class="btn btn-primary">Add to card</button>
     <input type="hidden" name="Item_Name" value="camera1">
-    <input type="hidden" name="price" value="25$">
+    <input type="hidden" name="price" value="23">
  </div>
     </div>
 </form>
@@ -44,10 +43,10 @@ session_start();
     <p class="card-text">$salary : 50-Cent</p>
     <button type="submit" name="Add_to_Cart" class="btn btn-primary">Add to card</button>
     <input type="hidden" name="Item_Name" value="watch1">
-    <input type="hidden" name="price" value="25$">
+    <input type="hidden" name="price" value="28">
  </div>
     </div>
- ``</form>
+ </form>
     </div>
 
     <!-- Card Number There -->
@@ -61,7 +60,7 @@ session_start();
     <p class="card-text">$salary : 100-Cent</p>
     <button type="submit" name="Add_to_Cart" class="btn btn-primary">Add to card</button>
     <input type="hidden" name="Item_Name" value="laptob 1">
-    <input type="hidden" name="price" value="25$">
+    <input type="hidden" name="price" value="25">
  </div>
     </div>
 </form>

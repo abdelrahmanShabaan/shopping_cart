@@ -1,5 +1,4 @@
 <?php include('header.php');
-session_start();
 
 ?>
 
@@ -15,12 +14,11 @@ session_start();
     
 <div class="container">
 
-<div class="col-lg-12 text-center border rounded bg-light my-5">
+<div class="col-lg-8 text-center border rounded bg-light my-5">
     <h1>My Cart</h1>
 </div>
 
-<div class="col-lg-12">
-
+<div class="col-lg-9">
 <table class="table">
   <thead class="text-center">
     <tr>
@@ -33,18 +31,26 @@ session_start();
   </thead>
   <tbody class="text-center">
     <?php
+    $total=0;
     if(isset($_SESSION['card']))
     {
         foreach($_SESSION['card'] as $key => $value)
         {
+            $sr=$key +1;
+            $total = $total + $value['price'];
             echo
             "
                 <tr>
-                <td>1</td>
+                <td>$sr</td>
                 <td>$value[Item_Name]</td>
                 <td>$value[price]</td>
                 <td><input class='text-center' type='number' value='$value[Quantity]' min='1' max='10'></td>
-                <td><button class='btn btm-sm btn-outline-danger'>Remove</button></td>
+                <td>
+                <form action='mange_card.php' method='post'>
+                <button name='Remove_Item' class='btn btm-sm btn-outline-danger'>Remove</button>
+                <input type='hidden' name='Item_Name' value='$value[Item_Name]'>
+                </form>
+                </td>
                 </tr>
             ";
         }
@@ -54,8 +60,27 @@ session_start();
     ?>
   </tbody>
 </table>
-
 </div>
+
+<div class="col-lg-3">
+  <div class="border bg-light rounded pr-4">
+  <h4>Total:</h4>
+    <h5 class="text-right"><?php echo $total; ?></h5>
+    <br>
+    <form>
+        <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+                Cash on Delivery
+        </label>
+    </div>
+    <br>
+        <button class="btn btn-primary btn-block">Make Purchase</button>
+    </form>
+  </div>
+</div>
+
+
 </div>
 
 </body>
