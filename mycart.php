@@ -70,18 +70,24 @@
   <h4>Grand Total:</h4>
     <h5 class="text-right" id="gtotal"> </h5>
     <br>
-    <form>
+    <?php 
+        if(isset( $_SESSION['card']) && count($_SESSION['card']) > 0 )
+        {
+
+        
+    ?>
+    <form action="purchase.php" method="POST">
          <div class="form-group">
             <label>Full Name</label>
-            <input type="text" name="fullname" class="form-control">
+            <input type="text" name="fullname" class="form-control" required> 
             </div>
             <div class="form-group">
             <label>phone number</label>
-            <input type="number" name="phone_num"  class="form-control">
+            <input type="number" name="phone_num"  class="form-control" required>
             </div>
             <div class="form-group">
             <label>Address</label>
-            <input type="text" name="address" class="form-control">
+            <input type="text" name="address" class="form-control" required>
             </div>
         <div class="form-check">
         <input class="form-check-input" type="radio" name="pay_mode" value="COD" id="flexRadioDefault2" checked>
@@ -90,8 +96,10 @@
         </label>
     </div>
     <br>
-        <button class="btn btn-primary btn-block">Make Purchase</button>
+        <button class="btn btn-primary btn-block" name="purchase">Make Purchase</button>
     </form>
+ <?php }   ?>
+
   </div>
 </div>
 

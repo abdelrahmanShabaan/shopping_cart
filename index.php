@@ -8,10 +8,11 @@ include('header.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping card</title>
+ 
 </head>
 <body>
 
-<div class="container text-center" style="align-content:center;">
+<div class="container text-center" style="align-content:center; margin-top: 10px;">
     <div class="row">
 
             <!-- Card Number One -->
