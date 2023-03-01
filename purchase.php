@@ -25,19 +25,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
 
         if(mysqli_query($con , $query1))
         {
-            echo
-    "
-    <script>
-        alert('Done');
-    </script>
-    ";
+           $Order_id = mysqli_insert_id($con);
+            $query2 = "INSERT INTO `user_orders`(`Order_Id`, `Item_Name`, `Price`, `Quantity`) VALUES (?,?,?,?)";
+           $stmt =  mysqli_prepare($con , $query2);
+           if($stmt)
+           {
 
+           }
+           else
+           {
+
+            echo
+            "
+            <script>
+                alert('SQL Query Prepare Error');
+                window.location.href='mycart.php';
+            </script>
+            ";
+
+           }
         }else
         {
             echo
     "
     <script>
-        alert('cannot connect to database');
+        alert('SQL Error');
         window.location.href='mycart.php';
     </script>
     ";
