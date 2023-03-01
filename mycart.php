@@ -1,6 +1,4 @@
-<?php include('header.php');
-
-?>
+<?php include('header.php');?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,32 +24,32 @@
       <th scope="col">Item Name</th>
       <th scope="col">Item Price</th>
       <th scope="col">Quantity</th>
+      <th scope="col">Total</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody class="text-center">
     <?php
-    $total=0;
     if(isset($_SESSION['card']))
     {
         foreach($_SESSION['card'] as $key => $value)
         {
             $sr=$key +1;
-            $total = $total + $value['price'];
             echo
             "
                 <tr>
                 <td>$sr</td>
                 <td>$value[Item_Name]</td>
-                <td>$value[price]</td>
-                <td><input class='text-center' type='number' value='$value[Quantity]' min='1' max='10'></td>
-                <td>
-                <form action='mange_card.php' method='post'>
+                <td>$value[price]<input type='hidden' class='iprice' value='$value[price]'></td>
+                <td><input class='text-center iquantity' onchange='subTotal()' type='number' value='$value[Quantity]' min='1' max='10'></td>
+                <td class='itotal'></td>
+            <td>
+            <form action='mange_card.php' method='post'>
                 <button name='Remove_Item' class='btn btm-sm btn-outline-danger'>Remove</button>
                 <input type='hidden' name='Item_Name' value='$value[Item_Name]'>
-                </form>
-                </td>
-                </tr>
+            </form>
+          </td>
+        </tr>
             ";
         }
         
@@ -64,8 +62,8 @@
 
 <div class="col-lg-3">
   <div class="border bg-light rounded pr-4">
-  <h4>Total:</h4>
-    <h5 class="text-right"><?php echo $total; ?></h5>
+  <h4>Grand Total:</h4>
+    <h5 class="text-right" id="gtotal"> </h5>
     <br>
     <form>
         <div class="form-check">
@@ -82,6 +80,26 @@
 
 
 </div>
+
+<script>
+           gt =0;
+    var iprice=document.getElementsByClassName('iprice');
+    var iquantity=document.getElementsByClassName('iquantity');
+    var itotal=document.getElementsByClassName('itotal');
+    var gtotal=document.getElementById('gtotal');
+    function subTotal()
+    {
+        gt =0;
+        for(i=0; i < iprice.length;i++)
+        {
+            itotal[i].innerText= (iprice[i].value) * (iquantity[i].value);
+            gt =  gt +(iprice[i].value) * (iquantity[i].value);
+        }
+        gtotal.innerText =gt;
+    }
+
+    subTotal();
+</script>
 
 </body>
 </html>
