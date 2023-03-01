@@ -41,7 +41,12 @@
                 <td>$sr</td>
                 <td>$value[Item_Name]</td>
                 <td>$value[price]<input type='hidden' class='iprice' value='$value[price]'></td>
-                <td><input class='text-center iquantity' onchange='subTotal()' type='number' value='$value[Quantity]' min='1' max='10'></td>
+                <td>
+                <form action='mange_card.php' method='post'>
+                <input class='text-center iquantity' name='Mod_Quantity' onchange='this.form.submit();' type='number' value='$value[Quantity]' min='1' max='10'>
+                <input type='hidden' name='Item_Name' value='$value[Item_Name]'>
+                </form>
+                </td>
                 <td class='itotal'></td>
             <td>
             <form action='mange_card.php' method='post'>
@@ -66,8 +71,20 @@
     <h5 class="text-right" id="gtotal"> </h5>
     <br>
     <form>
+         <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="fullname" class="form-control">
+            </div>
+            <div class="form-group">
+            <label>phone number</label>
+            <input type="number" name="phone_num"  class="form-control">
+            </div>
+            <div class="form-group">
+            <label>Address</label>
+            <input type="text" name="address" class="form-control">
+            </div>
         <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+        <input class="form-check-input" type="radio" name="pay_mode" value="COD" id="flexRadioDefault2" checked>
         <label class="form-check-label" for="flexRadioDefault2">
                 Cash on Delivery
         </label>
