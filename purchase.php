@@ -25,12 +25,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
 
         if(mysqli_query($con , $query1))
         {
-           $Order_id = mysqli_insert_id($con);
             $query2 = "INSERT INTO `user_orders`(`Order_Id`, `Item_Name`, `Price`, `Quantity`) VALUES (?,?,?,?)";
            $stmt =  mysqli_prepare($con , $query2);
            if($stmt)
            {
+                mysqli_stmt_bind_param($stmt , "isii", $Order_Id , $Item_Name , $Price , $Quantity);
+                foreach($_SESSION['card'] as $key => $value)
+                {
+                    $Order_Id = mysqli_insert_id($con);
+                    $Item_Name = $value['Item_Name'];
+                    $Price = $value['price'];
+                    $Quantity = $value['Quantity'];
+                    mysqli_stmt_execute($stmt);
+                }
+                unset($_SESSION['card']);
 
+                echo
+                "
+                <script>
+                    alert('Order Placed');
+                    window.location.href='index.php';
+                </script>
+                ";
            }
            else
            {
